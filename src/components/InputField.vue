@@ -23,7 +23,7 @@
   import { defineComponent, PropType } from "vue";
   import cn from "classnames";
 
-  interface InputProps {
+  interface InputType {
     id: string;
     label: string;
     placeholder: string;
@@ -36,28 +36,28 @@
     name: "InputField",
     props: {
       id: {
-        type: String as PropType<InputProps["id"]>,
+        type: String as PropType<InputType["id"]>,
         required: true,
       },
       label: {
-        type: String as PropType<InputProps["label"]>,
+        type: String as PropType<InputType["label"]>,
         required: true,
       },
       placeholder: {
-        type: String as PropType<InputProps["placeholder"]>,
+        type: String as PropType<InputType["placeholder"]>,
         required: true,
       },
       errorMessage: {
-        type: String as PropType<InputProps["errorMessage"]>,
+        type: String as PropType<InputType["errorMessage"]>,
         required: false,
         default: "",
       },
       modelValue: {
-        type: String as PropType<InputProps["modelValue"]>,
+        type: String as PropType<InputType["modelValue"]>,
         required: true,
       },
       type: {
-        type: String as PropType<InputProps["type"]>,
+        type: String as PropType<InputType["type"]>,
         required: false,
         default: "text",
       },
