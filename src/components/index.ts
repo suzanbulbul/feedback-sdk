@@ -1,4 +1,4 @@
-import Input from "./Input.vue";
-import TextArea from "./TextArea.vue";
+import InputField from "./InputField.vue";
+import TextareaField from "./TextareaField.vue";
 
-export { Input, TextArea };
+export { InputField, TextareaField };
