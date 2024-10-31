@@ -1,13 +1,13 @@
 <template>
   <form class="grid grid-col gap-4" @submit.prevent="handleSubmit">
-    <InputField
+    <input-field
       id="name"
       label="Name"
       v-model="form.name.value.value"
       placeholder="Enter Name"
       :errorMessage="form.name.errorMessage.value"
     />
-    <InputField
+    <input-field
       id="email"
       type="email"
       label="Email"
@@ -15,7 +15,7 @@
       placeholder="Enter Email"
       :errorMessage="form.email.errorMessage.value"
     />
-    <TextareaField
+    <textarea-field
       id="feedback"
       label="Feedback*"
       v-model="form.feedback.value.value"
@@ -27,10 +27,10 @@
 
 <script lang="ts">
   import { defineComponent } from "vue";
-  import { InputField, TextareaField } from "../components";
+  import { InputField, TextareaField } from "../../../components";
 
   export default defineComponent({
-    name: "FeedbackStep",
+    name: "form-step",
     components: {
       InputField,
       TextareaField,

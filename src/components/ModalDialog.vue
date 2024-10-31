@@ -23,8 +23,9 @@
           {{ closeTitle }}
         </button>
         <button
+          v-if="!hiddenSaveButton"
           @click="handleSave"
-          class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
           {{ saveTitle }}
         </button>
@@ -41,10 +42,11 @@
     show: boolean;
     closeTitle?: string;
     saveTitle?: string;
+    hiddenSaveButton?: boolean;
   }
 
   export default defineComponent({
-    name: "ModalDialog",
+    name: "modal-dialog",
     props: {
       title: {
         type: String as PropType<ModalDialogType["title"]>,
@@ -63,6 +65,10 @@
         type: String as PropType<ModalDialogType["saveTitle"]>,
         required: false,
         default: "Kaydet",
+      },
+      hiddenSaveButton: {
+        type: Boolean as PropType<ModalDialogType["hiddenSaveButton"]>,
+        default: false,
       },
     },
     emits: ["close", "save"],

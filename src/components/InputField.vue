@@ -33,7 +33,7 @@
   }
 
   export default defineComponent({
-    name: "InputField",
+    name: "input-field",
     props: {
       id: {
         type: String as PropType<InputType["id"]>,

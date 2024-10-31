@@ -9,7 +9,7 @@
                 Smarten up your work look or throw on a blazer with jeans for
                 the weekend
               </h1>
-              <button class="bg-gray-500 text-white px-4 py-2 rounded">
+              <button class="bg-teal-600 text-white px-4 py-2 rounded">
                 Shop Now
                 <i class="icon-arrow"></i>
               </button>
@@ -72,7 +72,7 @@
                 At suspendisse augue lectus arcu, accumsan ut sit posuere vitae
                 sit tincidunt semper eu proin leo gravida cursus.
               </p>
-              <a class="text-gray-500 underline" href="/">Read more</a>
+              <a class="text-teal-700 underline" href="/">Read more</a>
             </div>
           </div>
         </div>

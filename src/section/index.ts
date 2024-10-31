@@ -1,6 +1,4 @@
-import FeedbackStep from "./FeedbackStep.vue";
-import ThankYouStep from "./ThankYouStep.vue";
 import Banner from "./Banner.vue";
-import CookieArea from "./CookieArea.vue";
+import FeedbackWidget from "./FeedbackWidget/index.vue";
 
-export { FeedbackStep, ThankYouStep, Banner, CookieArea };
+export { Banner, FeedbackWidget };
