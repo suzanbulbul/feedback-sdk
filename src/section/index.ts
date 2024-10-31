@@ -1,4 +1,4 @@
-import FeedbackStep from "./FeedbackStep.vue";
-import ThankYouStep from "./ThankYouStep.vue";
+import Banner from "./Banner.vue";
+import FeedbackWidget from "./FeedbackWidget/index.vue";
 
-export { FeedbackStep, ThankYouStep };
+export { Banner, FeedbackWidget };

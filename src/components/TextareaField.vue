@@ -32,7 +32,7 @@
   }
 
   export default defineComponent({
-    name: "TextareaField",
+    name: "textarea-field",
     props: {
       id: {
         type: String as PropType<TextAreaType["id"]>,
