@@ -22,7 +22,7 @@
   import { defineComponent, PropType } from "vue";
   import cn from "classnames";
 
-  interface TextAreaProps {
+  interface TextAreaType {
     id: string;
     label: string;
     placeholder: string;
@@ -35,29 +35,29 @@
     name: "TextareaField",
     props: {
       id: {
-        type: String as PropType<TextAreaProps["id"]>,
+        type: String as PropType<TextAreaType["id"]>,
         required: true,
       },
       label: {
-        type: String as PropType<TextAreaProps["label"]>,
+        type: String as PropType<TextAreaType["label"]>,
         required: true,
       },
       placeholder: {
-        type: String as PropType<TextAreaProps["placeholder"]>,
+        type: String as PropType<TextAreaType["placeholder"]>,
         required: true,
       },
       rows: {
-        type: Number as PropType<TextAreaProps["rows"]>,
+        type: Number as PropType<TextAreaType["rows"]>,
         required: false,
         default: 4,
       },
       errorMessage: {
-        type: String as PropType<TextAreaProps["errorMessage"]>,
+        type: String as PropType<TextAreaType["errorMessage"]>,
         required: false,
         default: "",
       },
       modelValue: {
-        type: String as PropType<TextAreaProps["modelValue"]>,
+        type: String as PropType<TextAreaType["modelValue"]>,
         required: true,
       },
     },
