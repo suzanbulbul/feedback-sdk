@@ -4,7 +4,6 @@
     class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75"
   >
     <div
-      :class="modalSize"
       class="relative max-w-full p-4 bg-white rounded-lg shadow-lg w-[500px]"
     >
       <div class="flex items-center justify-between pb-3 border-b">
