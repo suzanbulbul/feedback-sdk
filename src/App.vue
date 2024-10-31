@@ -1,19 +1,9 @@
 <template>
-  <ModalDialog
-    :show="showModal"
-    title="Bilgilendirme"
-    @close="handleClose"
-    @save="submit"
-    saveTitle="Submit"
-  >
-    <div v-if="step === 1">
-      <FeedbackStep :form="form" @submit="submit" />
-    </div>
-    <div v-if="step === 2">
-      <ThankYouStep />
-    </div>
-  </ModalDialog>
-  <Banner />
+  <div class="relative h-screen">
+    <FeedbackModal />
+    <Banner />
+    <CookieArea />
+  </div>
 </template>
 
 <script lang="ts">
@@ -21,7 +11,7 @@
   import { useField, useForm } from "vee-validate";
   import cn from "classnames";
   import { TextareaField, InputField, ModalDialog } from "./components/index";
-  import { FeedbackStep, ThankYouStep, Banner } from "./section";
+  import { Banner, CookieArea } from "./section";
 
   export interface FormType {
     name?: string;
@@ -35,9 +25,8 @@
       TextareaField,
       InputField,
       ModalDialog,
-      ThankYouStep,
-      FeedbackStep,
       Banner,
+      CookieArea,
     },
 
     setup() {
