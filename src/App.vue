@@ -13,7 +13,7 @@
       <ThankYouStep />
     </div>
   </ModalDialog>
-  suzan
+  <Banner />
 </template>
 
 <script lang="ts">
@@ -21,7 +21,7 @@
   import { useField, useForm } from "vee-validate";
   import cn from "classnames";
   import { TextareaField, InputField, ModalDialog } from "./components/index";
-  import { FeedbackStep, ThankYouStep } from "./section";
+  import { FeedbackStep, ThankYouStep, Banner } from "./section";
 
   export interface FormType {
     name?: string;
@@ -37,6 +37,7 @@
       ModalDialog,
       ThankYouStep,
       FeedbackStep,
+      Banner,
     },
 
     setup() {
