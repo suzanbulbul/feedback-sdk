@@ -1,3 +1,3 @@
-import Test from "./Test.vue";
+import Input from "./Input.vue";
 
-export { Test };
+export { Input };
