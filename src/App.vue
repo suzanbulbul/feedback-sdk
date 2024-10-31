@@ -6,31 +6,12 @@
     @save="submit"
     saveTitle="Submit"
   >
-    <form class="grid grid-col gap-4" @submit.prevent="submit">
-      <InputField
-        id="name"
-        label="Name"
-        v-model="name.value.value"
-        placeholder="Enter Name"
-        :errorMessage="name.errorMessage.value"
-      />
-      <InputField
-        id="email"
-        type="email"
-        label="Email"
-        v-model="email.value.value"
-        placeholder="Enter Email"
-        :errorMessage="email.errorMessage.value"
-      />
-
-      <TextareaField
-        id="feedback"
-        label="Feedback*"
-        v-model="feedback.value.value"
-        placeholder="Enter Feedback"
-        :errorMessage="feedback.errorMessage.value"
-      />
-    </form>
+    <div v-if="step === 1">
+      <FeedbackStep :form="form" @submit="submit" />
+    </div>
+    <div v-if="step === 2">
+      <ThankYouStep />
+    </div>
   </ModalDialog>
   suzan
 </template>
@@ -40,8 +21,9 @@
   import { useField, useForm } from "vee-validate";
   import cn from "classnames";
   import { TextareaField, InputField, ModalDialog } from "./components/index";
+  import { FeedbackStep, ThankYouStep } from "./section";
 
-  interface PopupFormType {
+  export interface FormType {
     name?: string;
     email?: string;
     feedback: string;
@@ -53,10 +35,13 @@
       TextareaField,
       InputField,
       ModalDialog,
+      ThankYouStep,
+      FeedbackStep,
     },
 
     setup() {
-      const showModal = ref(false);
+      const showModal = ref<boolean>(false);
+      const step = ref<number>(1);
 
       const handleClose = () => {
         handleReset();
@@ -69,7 +54,7 @@
         }, 3000);
       });
 
-      const { handleSubmit, handleReset } = useForm({
+      const { handleSubmit, handleReset } = useForm<FormType>({
         initialValues: {
           name: "",
           email: "",
@@ -82,24 +67,28 @@
           },
         },
       });
-      const email = useField<string>("email");
-      const name = useField<string>("name");
-      const feedback = useField<string>("feedback");
 
-      const submit = handleSubmit((values: PopupFormType) => {
+      const submit = handleSubmit((values: FormType) => {
         console.log(values, "values");
-        handleReset();
+        if (step.value === 1) {
+          step.value = 2;
+        } else {
+          handleClose();
+        }
       });
 
       return {
-        email,
-        name,
-        feedback,
+        form: {
+          name: useField<string>("name"),
+          email: useField<string>("email"),
+          feedback: useField<string>("feedback"),
+        },
         submit,
         handleReset,
         cn,
         showModal,
         handleClose,
+        step,
       };
     },
   });
