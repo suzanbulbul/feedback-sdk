@@ -1,5 +1,5 @@
 <template>
-  <div class="text-left grid grid-gol gap-1">
+  <!-- <div class="text-left grid grid-gol gap-1">
     <label class="text-sm font-medium text-gray-700">
       {{ label.includes("*") ? label.split("*")[0] : label }}
       <span v-if="label.includes('*')" class="text-red-400">*</span>
@@ -7,11 +7,10 @@
     <input
       :type="type"
       autoComplete="off"
-      name="description"
       :placeholder="placeholder"
       :class="
         cn(
-          'border block w-full flex-1 appearance-none p-2 text-sm outline-none focus:ring-0',
+          'rounded-md border block w-full flex-1 appearance-none p-2 text-sm outline-none focus:ring-0',
           {
             'placeholder-gray-500': !hasError,
             'placeholder-red-300': hasError,
@@ -21,6 +20,31 @@
       v-bind="restProps"
     />
     <p v-if="hasError" class="mt-1 text-sm text-red-600">
+      {{ errorMessage }}
+    </p>
+  </div> -->
+  <div className="h-auto w-full">
+    <label :for="id" class="text-sm font-medium text-gray-700">
+      {{ label.includes("*") ? label.split("*")[0] : label }}
+      <span v-if="label.includes('*')" class="text-red-400">*</span>
+    </label>
+    <input
+      :v-model="modelValue"
+      :type="type"
+      :id="id"
+      :class="
+        cn(
+          'rounded-md border block w-full flex-1 appearance-none p-2 text-sm outline-none focus:ring-0',
+          {
+            'placeholder-gray-500': !errorMessage,
+            'placeholder-red-300': errorMessage,
+          }
+        )
+      "
+      :placeholder="placeholder"
+      v-bind="restProps"
+    />
+    <p v-if="errorMessage" class="mt-1 text-sm text-red-600">
       {{ errorMessage }}
     </p>
   </div>
@@ -33,6 +57,14 @@
   export default defineComponent({
     name: "Input",
     props: {
+      modelValue: {
+        type: String,
+        default: "",
+      },
+      id: {
+        type: String,
+        required: true,
+      },
       label: {
         type: String,
         required: true,
@@ -41,13 +73,8 @@
         type: String,
         required: true,
       },
-      hasError: {
-        type: Boolean,
-        required: false,
-      },
       errorMessage: {
         type: String,
-        required: false,
       },
       type: {
         type: String as () => "text" | "email",
@@ -56,7 +83,7 @@
       },
     },
     setup(props) {
-      const { label, placeholder, hasError, errorMessage, type, ...restProps } =
+      const { id, label, placeholder, errorMessage, type, ...restProps } =
         props;
 
       return {
