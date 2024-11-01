@@ -9,7 +9,13 @@
                 Smarten up your work look or throw on a blazer with jeans for
                 the weekend
               </h1>
-              <button class="bg-teal-600 text-white px-4 py-2 rounded">
+              <button
+                :class="[
+                  shortcuts.borderRounded,
+                  shortcuts.subtitleBold,
+                  shortcuts.btn.primary,
+                ]"
+              >
                 Shop Now
                 <i class="icon-arrow"></i>
               </button>
@@ -80,3 +86,18 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+  import { defineComponent } from "vue";
+  import { shortcuts } from "../until/style/shortcuts";
+
+  export default defineComponent({
+    name: "banner",
+
+    data() {
+      return {
+        shortcuts,
+      };
+    },
+  });
+</script>

@@ -1,5 +1,5 @@
 <template>
-  <form class="grid grid-col gap-4" @submit.prevent="handleSubmit">
+  <form :class="shortcuts.gridCol" class="gap-4" @submit.prevent="handleSubmit">
     <input-field
       id="name"
       label="Name"
@@ -28,12 +28,18 @@
 <script lang="ts">
   import { defineComponent } from "vue";
   import { InputField, TextareaField } from "../../../components";
+  import { shortcuts } from "../../../until/style/shortcuts";
 
   export default defineComponent({
     name: "form-step",
     components: {
       InputField,
       TextareaField,
+    },
+    data() {
+      return {
+        shortcuts,
+      };
     },
     props: {
       form: {

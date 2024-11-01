@@ -1,19 +1,18 @@
 <template>
-  <div class="text-left grid grid-cols gap-1">
-    <label class="text-sm font-medium text-gray-700">
+  <div :class="shortcuts.gridCol" class="gap-1">
+    <label :class="shortcuts.subtitleBold">
       {{ label.includes("*") ? label.split("*")[0] : label }}
-      <span v-if="label.includes('*')" class="text-red-400">*</span>
+      <span v-if="label.includes('*')" :class="shortcuts.errorMessage">*</span>
     </label>
     <textarea
       v-model="modelValue"
       :id="id"
       :rows="rows"
-      class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
       :class="computedClass"
       @input="updateValue"
       :placeholder="placeholder"
     ></textarea>
-    <p v-if="errorMessage" class="mt-1 text-sm text-red-600">
+    <p v-if="errorMessage" class="mt-1" :class="shortcuts.errorMessage">
       {{ errorMessage }}
     </p>
   </div>
@@ -21,6 +20,7 @@
 <script lang="ts">
   import { defineComponent, PropType } from "vue";
   import cn from "classnames";
+  import { shortcuts } from "../until/style/shortcuts";
 
   interface TextAreaType {
     id: string;
@@ -61,14 +61,21 @@
         required: true,
       },
     },
+    data() {
+      return {
+        shortcuts,
+      };
+    },
     computed: {
       computedClass() {
         return cn(
-          "rounded-md border block w-full flex-1 appearance-none p-2 text-sm outline-none focus:ring-0",
+          shortcuts.borderRounded,
+          "block w-full appearance-none p-2",
           {
             "placeholder-gray-500": !this.errorMessage,
             "placeholder-red-300": this.errorMessage,
-          }
+          },
+          shortcuts.subtitle
         );
       },
     },
