@@ -1,35 +1,47 @@
 <template>
   <div
     v-if="!isMinimized"
-    class="fixed bottom-4 left-4 sm:w-1/2 w-11/12 bg-teal-50 p-6 rounded-lg shadow-md"
+    :class="[
+      shortcuts.borderRounded,
+      'fixed bottom-4 left-4 sm:w-1/2 w-11/12 bg-teal-50 p-6',
+    ]"
   >
-    <h1 class="text-md font-semibold text-teal-700 mb-2">
-      Your Feedback is Valuable
-    </h1>
-    <p class="text-sm text-gray-600 mb-4">
-      We truly appreciate your feedback! Your thoughts help us improve our
-      products and services. We would be grateful if you could share your
-      insights with us.
-    </p>
-
-    <div class="flex space-x-2">
-      <button
-        @click="minimize"
-        class="flex-1 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-      >
-        Minimize
-      </button>
-      <button
-        @click="handleSave"
-        class="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-      >
-        Submit Feedback
-      </button>
+    <div :class="[shortcuts.gridCol, 'gap-2.5']">
+      <h1 :class="shortcuts.title">Your Feedback is Valuable</h1>
+      <p :class="shortcuts.subtitle">
+        We truly appreciate your feedback! Your thoughts help us improve our
+        products and services. We would be grateful if you could share your
+        insights with us.
+      </p>
+      <div class="flex space-x-2">
+        <button
+          :class="[
+            shortcuts.borderRounded,
+            shortcuts.subtitleBold,
+            shortcuts.btn.secondary,
+            'w-full',
+          ]"
+          @click="minimize"
+        >
+          Minimize
+        </button>
+        <button
+          :class="[
+            shortcuts.borderRounded,
+            shortcuts.subtitleBold,
+            shortcuts.btn.primary,
+            'w-full',
+          ]"
+          @click="handleSave"
+        >
+          Submit Feedback
+        </button>
+      </div>
     </div>
   </div>
   <div
     v-else
-    class="fixed bottom-4 left-4 bg-teal-50 rounded-full shadow-md p-1"
+    :class="[shortcuts.borderRounded, 'fixed bottom-4 left-4 bg-teal-50 p-1']"
   >
     <img
       src="https://cdn-icons-png.flaticon.com/512/4658/4658825.png"
@@ -61,6 +73,8 @@
   import cn from "classnames";
   import { ModalDialog } from "../../components";
   import { SubmittedStep, FormStep } from "./tabs";
+  import { shortcuts } from "../../until/style/shortcuts";
+  import { useLocalStorage } from "../../until/helper/useLocalStorage";
 
   export interface FormType {
     name?: string;
@@ -75,11 +89,15 @@
       SubmittedStep,
       FormStep,
     },
-
+    data() {
+      return {
+        shortcuts,
+      };
+    },
     setup() {
       const showModal = ref<boolean>(false);
       const step = ref<number>(1);
-      const isMinimized = ref(false);
+      const isMinimized = ref<boolean>(false);
 
       const minimize = () => {
         isMinimized.value = true;
@@ -94,6 +112,7 @@
       const handleClose = () => {
         handleReset();
         showModal.value = false;
+        step.value === 2 && (minimize(), (step.value = 1));
       };
 
       onMounted(() => {
@@ -117,12 +136,9 @@
       });
 
       const submit = handleSubmit((values: FormType) => {
-        console.log(values, "values");
-        if (step.value === 1) {
-          step.value = 2;
-        } else {
-          handleClose();
-        }
+        useLocalStorage({ name: "feedback-form", value: values });
+
+        step.value === 1 ? (step.value = 2) : handleClose();
       });
 
       return {
