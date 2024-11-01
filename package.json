@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build": "tailwindcss -o build.css --minify && vue-tsc -b && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "classnames": "^2.5.1",
     "vee-validate": "^4.14.6",
+    "vite-plugin-string": "^1.2.3",
     "yup": "^1.4.0"
   },
   "devDependencies": {
@@ -22,7 +23,6 @@
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3",
-    "unocss": "^0.63.6",
     "vite": "^5.4.9",
     "vue-tsc": "^2.1.6"
   }
