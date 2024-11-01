@@ -1,18 +1,15 @@
 <template>
-  <div class="relative h-screen">
-    <Banner />
-    <feedback-widget />
-  </div>
+  <feedback-widget />
 </template>
 
 <script lang="ts">
+  import "../build.css";
   import { defineComponent } from "vue";
-  import { Banner, FeedbackWidget } from "./section";
+  import { FeedbackWidget } from "./section";
 
   export default defineComponent({
     name: "app",
     components: {
-      Banner,
       FeedbackWidget,
     },
   });

@@ -8,7 +8,8 @@ export const shortcuts = {
   errorMessage: "text-sm text-red-600",
   gridCol: "grid grid-col",
   btn: {
-    primary: "border-transparent text-white bg-teal-600 hover:bg-teal-700 ",
-    secondary: "bg-white hover:bg-gray-50",
+    primary:
+      "border-transparent text-white bg-teal-600 hover:bg-teal-700 px-1 py-2",
+    secondary: "bg-white hover:bg-gray-50 px-1 py-2",
   },
 };

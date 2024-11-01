@@ -1,10 +1,32 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import Unocss from "unocss/vite";
 
 export default defineConfig({
-  plugins: [vue(), Unocss()],
+  plugins: [vue()],
+  build: {
+    lib: {
+      entry: "src/sdk.ts",
+      name: "FeedbackWidget",
+      fileName: (format) => `feedback-widget.${format}.js`,
+      formats: ["iife"],
+    },
+    rollupOptions: {
+      output: {
+        globals: {
+          vue: "Vue",
+        },
+      },
+    },
+  },
   server: {
     port: 3000,
+  },
+  resolve: {
+    alias: {
+      vue: "vue/dist/vue.esm-bundler.js",
+    },
+  },
+  define: {
+    "process.env": {},
   },
 });

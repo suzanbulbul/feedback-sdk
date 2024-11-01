@@ -7,11 +7,9 @@
     ]"
   >
     <div :class="[shortcuts.gridCol, 'gap-2.5']">
-      <h1 :class="shortcuts.title">Your Feedback is Valuable</h1>
+      <h1 :class="shortcuts.title">{{ title }}</h1>
       <p :class="shortcuts.subtitle">
-        We truly appreciate your feedback! Your thoughts help us improve our
-        products and services. We would be grateful if you could share your
-        insights with us.
+        {{ desc }}
       </p>
       <div class="flex space-x-2">
         <button
@@ -21,9 +19,9 @@
             shortcuts.btn.secondary,
             'w-full',
           ]"
-          @click="minimize"
+          @click="isMinimized = true"
         >
-          Minimize
+          {{ minimizeTitle }}
         </button>
         <button
           :class="[
@@ -32,9 +30,9 @@
             shortcuts.btn.primary,
             'w-full',
           ]"
-          @click="handleSave"
+          @click="showModal = true"
         >
-          Submit Feedback
+          {{ submitTitle }}
         </button>
       </div>
     </div>
@@ -47,7 +45,7 @@
       src="https://cdn-icons-png.flaticon.com/512/4658/4658825.png"
       alt="Minimized Icon"
       class="w-12 h-12 cursor-pointer"
-      @click="maximize"
+      @click="isMinimized = false"
     />
   </div>
   <modal-dialog
@@ -89,30 +87,38 @@
       SubmittedStep,
       FormStep,
     },
-    data() {
-      return {
-        shortcuts,
-      };
+    props: {
+      title: {
+        type: String,
+        required: false,
+        default: "Your Feedback is Valuable",
+      },
+      desc: {
+        type: String,
+        required: false,
+        default:
+          "We truly appreciate your feedback! Your thoughts help us improve our products and services. We would be grateful if you could share your insights with us.",
+      },
+      minimizeTitle: {
+        type: String,
+        required: false,
+        default: "Minimize",
+      },
+      submitTitle: {
+        type: String,
+        required: false,
+        default: "Submit Feedback ",
+      },
     },
     setup() {
       const showModal = ref<boolean>(false);
       const step = ref<number>(1);
       const isMinimized = ref<boolean>(false);
 
-      const minimize = () => {
-        isMinimized.value = true;
-      };
-      const maximize = () => {
-        isMinimized.value = false;
-      };
-      const handleSave = () => {
-        showModal.value = true;
-      };
-
       const handleClose = () => {
         handleReset();
         showModal.value = false;
-        step.value === 2 && (minimize(), (step.value = 1));
+        step.value === 2 && ((isMinimized.value = true), (step.value = 1));
       };
 
       onMounted(() => {
@@ -154,9 +160,7 @@
         handleClose,
         step,
         isMinimized,
-        minimize,
-        maximize,
-        handleSave,
+        shortcuts,
       };
     },
   });
