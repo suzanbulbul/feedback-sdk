@@ -4,7 +4,7 @@ import { shortcuts } from "./untils/constants/shortcutStyle";
 import buildcss from "../build.css?raw";
 
 window.feedbackConfig = {
-  theme: "ORANGE",
+  theme: "TEAL",
   title: "Geri Bildiriminiz Bizim için Çok Değerli",
   desc: "Sizlerin görüşleri bizim için çok önemli! Ürün ve hizmetlerimizi daha iyi hale getirebilmemiz için düşüncelerinizi paylaşırsanız çok seviniriz.",
   minimizeTitle: "Şimdi Değil",

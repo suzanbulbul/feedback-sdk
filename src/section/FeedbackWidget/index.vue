@@ -75,7 +75,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, onMounted, ref } from "vue";
+  import { defineComponent, ref } from "vue";
   import { useField, useForm } from "vee-validate";
   import { ModalDialog } from "../../components";
   import { SubmittedStep, FormStep } from "./tabs";
@@ -105,12 +105,6 @@
         showModal.value = false;
         step.value === 2 && ((isMinimized.value = true), (step.value = 1));
       };
-
-      onMounted(() => {
-        setTimeout(() => {
-          showModal.value = true;
-        }, 1000);
-      });
 
       const { handleSubmit, handleReset } = useForm<FormType>({
         initialValues: {
