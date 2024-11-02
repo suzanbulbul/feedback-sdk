@@ -80,6 +80,7 @@
   import { ModalDialog } from "../../components";
   import { SubmittedStep, FormStep } from "./tabs";
   import { shortcuts, useLocalStorage, VARIANT } from "../../untils";
+  // import { FeedbackApi } from "../../api/feebackApi";
 
   export interface FormType {
     name?: string;
@@ -125,10 +126,19 @@
         },
       });
 
-      const submit = handleSubmit((values: FormType) => {
-        useLocalStorage({ name: "feedback-form", value: values });
-
-        step.value === 1 ? (step.value = 2) : handleClose();
+      const submit = handleSubmit(async (form: FormType) => {
+        useLocalStorage({ name: "feedback-form", value: form });
+        if (step.value === 1) {
+          // await FeedbackApi.createFeedback(form).then((res: any) => {
+          //   if (!res?.error) {
+          //     step.value = 2;
+          //   }
+          // });
+          step.value = 2;
+          console.log(form);
+        } else {
+          handleClose();
+        }
       });
 
       return {

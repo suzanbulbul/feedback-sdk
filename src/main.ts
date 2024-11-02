@@ -10,6 +10,10 @@ import buildcss from "../build.css?raw";
 //   minimizeTitle: "Minimize",
 //   submitTitle: "Submit Feedback",
 //   minimizeIconURL: "https://cdn-icons-png.flaticon.com/512/4658/4658825.png",
+//   api: {
+//     endpoind: "https://test-url/feedback",
+//     token: "AIcZM1_pDWqYmh_Dummy-token",
+//   }
 //   modal: {
 //     title: "Feedback Modal",
 //     saveTitle: "Save",
