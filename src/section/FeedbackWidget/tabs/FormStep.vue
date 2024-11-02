@@ -2,24 +2,24 @@
   <form :class="shortcuts.gridCol" class="gap-4" @submit.prevent="handleSubmit">
     <input-field
       id="name"
-      label="Name"
+      label="Ad-Soyad"
       v-model="form.name.value.value"
-      placeholder="Enter Name"
+      placeholder="Ad-Soyad Girin"
       :errorMessage="form.name.errorMessage.value"
     />
     <input-field
       id="email"
       type="email"
-      label="Email"
+      label="E-posta"
       v-model="form.email.value.value"
-      placeholder="Enter Email"
+      placeholder="E-postanızı Girin"
       :errorMessage="form.email.errorMessage.value"
     />
     <textarea-field
       id="feedback"
-      label="Feedback*"
+      label="Geri Bildirim*"
       v-model="form.feedback.value.value"
-      placeholder="Enter Feedback"
+      placeholder="Lütfen geri bildiriminizi girin"
       :errorMessage="form.feedback.errorMessage.value"
     />
   </form>
