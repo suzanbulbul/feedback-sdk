@@ -13,7 +13,7 @@
         shortcuts,
         thanksMessage:
           window.feedbackConfig?.modal?.thanksMessage ||
-          "Thank you! Your feedback is very valuable to us. We will continue to work to provide a better experience with your feedback.",
+          "Teşekkür ederiz! Görüşleriniz bizim için çok değerli. Sunduğunuz geri bildirimle daha iyi bir deneyim sunmak için çalışmaya devam edeceğiz.",
       };
     },
   };

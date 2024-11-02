@@ -8,7 +8,7 @@ interface FeedbackConfig {
   submitTitle?: string;
   minimizeIconURL?: string;
   api: {
-    endpoind: string;
+    endpoint: string;
     token: string;
   };
   modal?: {

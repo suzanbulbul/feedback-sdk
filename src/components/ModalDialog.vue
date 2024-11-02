@@ -1,8 +1,7 @@
 <template>
   <div
     v-if="show"
-    class="fixed inset-0 z-50 flex items-center justify-center bg-opacity-75"
-    :class="theme.bg"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-opacity-75 bg-gray-50"
   >
     <div
       :class="[
@@ -77,12 +76,12 @@
       closeTitle: {
         type: String as PropType<ModalDialogType["closeTitle"]>,
         required: false,
-        default: "Close",
+        default: "Kapat",
       },
       saveTitle: {
         type: String as PropType<ModalDialogType["saveTitle"]>,
         required: false,
-        default: "Save",
+        default: "Kaydet",
       },
       hiddenSaveButton: {
         type: Boolean as PropType<ModalDialogType["hiddenSaveButton"]>,

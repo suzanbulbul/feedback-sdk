@@ -120,7 +120,7 @@
         },
         validationSchema: {
           feedback(value: string) {
-            if (!value) return "Feedback is required.";
+            if (!value) return "Geri bildirim alanı zorunludur.";
             return true;
           },
         },
@@ -154,18 +154,21 @@
         isMinimized,
         shortcuts,
         feedback: {
-          title: window.feedbackConfig?.title || "Your Feedback is Valuable",
+          title:
+            window.feedbackConfig?.title ||
+            "Geri Bildiriminiz Bizim için Çok Değerli",
           desc:
             window.feedbackConfig?.desc ||
-            "We truly appreciate your feedback! Your thoughts help us improve our products and services. We would be grateful if you could share your insights with us.",
-          minimizeTitle: window.feedbackConfig?.minimizeTitle || "Minimize",
-          submitTitle: window.feedbackConfig?.submitTitle || "Submit Feedback",
+            "Sizlerin görüşleri bizim için çok önemli! Ürün ve hizmetlerimizi daha iyi hale getirebilmemiz için düşüncelerinizi paylaşırsanız çok seviniriz.",
+          minimizeTitle: window.feedbackConfig?.minimizeTitle || "Şimdi Değil",
+          submitTitle: window.feedbackConfig?.submitTitle || "Görüş Bildir",
           theme: VARIANT[window.feedbackConfig?.theme || "TEAL"],
           minimizeIconURL:
             window.feedbackConfig?.minimizeIconURL ||
             "https://cdn-icons-png.flaticon.com/512/4658/4658825.png",
           modal: {
-            title: window.feedbackConfig?.modal?.title || "Feedback Modal",
+            title:
+              window.feedbackConfig?.modal?.title || "Görüş Bildirme Formu",
             saveTitle: window.feedbackConfig?.modal?.saveTitle,
             closeTitle: window.feedbackConfig?.modal?.closeTitle,
           },
