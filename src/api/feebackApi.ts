@@ -1,5 +1,6 @@
-//Type
 import axios from "axios";
+
+//Type
 import { FormType } from "../section/FeedbackWidget/index.vue";
 
 const apiBaseUrl = window.feedbackConfig?.api.endpoind;
