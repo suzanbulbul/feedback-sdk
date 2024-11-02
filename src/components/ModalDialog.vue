@@ -1,7 +1,8 @@
 <template>
   <div
     v-if="show"
-    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-opacity-75"
+    :class="theme.bg"
   >
     <div
       :class="[
@@ -10,7 +11,9 @@
       ]"
     >
       <div class="flex items-center justify-between">
-        <h3 :class="shortcuts.title">{{ title }}</h3>
+        <h3 :class="[theme.color, shortcuts.title]">
+          {{ title }}
+        </h3>
         <button :class="[shortcuts.subtitleBold, 'p-0']" @click="handleClose">
           ✕
         </button>
@@ -34,6 +37,7 @@
           v-if="!hiddenSaveButton"
           @click="handleSave"
           :class="[
+            theme.btnColor,
             shortcuts.borderRounded,
             shortcuts.subtitleBold,
             shortcuts.btn.primary,
@@ -49,7 +53,7 @@
 
 <script lang="ts">
   import { defineComponent, PropType } from "vue";
-  import { shortcuts } from "../until/style/shortcuts";
+  import { shortcuts, VARIANT } from "../untils";
 
   interface ModalDialogType {
     title: string;
@@ -88,6 +92,7 @@
     data() {
       return {
         shortcuts,
+        theme: VARIANT[window.feedbackConfig?.theme || "TEAL"],
       };
     },
     emits: ["close", "save"],

@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     lib: {
-      entry: "src/sdk.ts",
+      entry: "src/main.ts",
       name: "FeedbackWidget",
       fileName: (format) => `feedback-widget.${format}.js`,
       formats: ["iife"],
