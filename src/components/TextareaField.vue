@@ -20,7 +20,7 @@
 <script lang="ts">
   import { defineComponent, PropType } from "vue";
   import cn from "classnames";
-  import { shortcuts } from "../until/style/shortcuts";
+  import { shortcuts } from "../untils";
 
   interface TextAreaType {
     id: string;

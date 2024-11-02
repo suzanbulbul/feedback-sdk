@@ -3,28 +3,32 @@
     v-if="!isMinimized"
     :class="[
       shortcuts.borderRounded,
-      'fixed bottom-4 left-4 sm:w-1/2 w-11/12 bg-teal-50 p-6',
+      feedback.theme.bg,
+      'fixed bottom-4 left-4 sm:w-1/2 w-11/12 p-6',
     ]"
   >
     <div :class="[shortcuts.gridCol, 'gap-2.5']">
-      <h1 :class="shortcuts.title">{{ title }}</h1>
+      <h1 :class="[feedback.theme.color, shortcuts.title]">
+        {{ feedback.title }}
+      </h1>
       <p :class="shortcuts.subtitle">
-        {{ desc }}
+        {{ feedback.desc }}
       </p>
       <div class="flex space-x-2">
         <button
           :class="[
+            'w-full',
             shortcuts.borderRounded,
             shortcuts.subtitleBold,
             shortcuts.btn.secondary,
-            'w-full',
           ]"
           @click="isMinimized = true"
         >
-          {{ minimizeTitle }}
+          {{ feedback.minimizeTitle }}
         </button>
         <button
           :class="[
+            feedback.theme.btnColor,
             shortcuts.borderRounded,
             shortcuts.subtitleBold,
             shortcuts.btn.primary,
@@ -32,17 +36,21 @@
           ]"
           @click="showModal = true"
         >
-          {{ submitTitle }}
+          {{ feedback.submitTitle }}
         </button>
       </div>
     </div>
   </div>
   <div
     v-else
-    :class="[shortcuts.borderRounded, 'fixed bottom-4 left-4 bg-teal-50 p-1']"
+    :class="[
+      shortcuts.borderRounded,
+      feedback.theme.bg,
+      'fixed bottom-4 left-4 p-1',
+    ]"
   >
     <img
-      src="https://cdn-icons-png.flaticon.com/512/4658/4658825.png"
+      :src="feedback.minimizeIconURL"
       alt="Minimized Icon"
       class="w-12 h-12 cursor-pointer"
       @click="isMinimized = false"
@@ -50,10 +58,11 @@
   </div>
   <modal-dialog
     :show="showModal"
-    title="FeedBack Modal"
+    :title="feedback.modal.title"
     @close="handleClose"
     @save="submit"
-    saveTitle="Submit"
+    :saveTitle="feedback.modal.saveTitle"
+    :closeTitle="feedback.modal.closeTitle"
     :hiddenSaveButton="step === 2"
   >
     <div v-if="step === 1">
@@ -68,11 +77,9 @@
 <script lang="ts">
   import { defineComponent, onMounted, ref } from "vue";
   import { useField, useForm } from "vee-validate";
-  import cn from "classnames";
   import { ModalDialog } from "../../components";
   import { SubmittedStep, FormStep } from "./tabs";
-  import { shortcuts } from "../../until/style/shortcuts";
-  import { useLocalStorage } from "../../until/helper/useLocalStorage";
+  import { shortcuts, useLocalStorage, VARIANT } from "../../untils";
 
   export interface FormType {
     name?: string;
@@ -86,29 +93,6 @@
       ModalDialog,
       SubmittedStep,
       FormStep,
-    },
-    props: {
-      title: {
-        type: String,
-        required: false,
-        default: "Your Feedback is Valuable",
-      },
-      desc: {
-        type: String,
-        required: false,
-        default:
-          "We truly appreciate your feedback! Your thoughts help us improve our products and services. We would be grateful if you could share your insights with us.",
-      },
-      minimizeTitle: {
-        type: String,
-        required: false,
-        default: "Minimize",
-      },
-      submitTitle: {
-        type: String,
-        required: false,
-        default: "Submit Feedback ",
-      },
     },
     setup() {
       const showModal = ref<boolean>(false);
@@ -154,13 +138,28 @@
           feedback: useField<string>("feedback"),
         },
         submit,
-        handleReset,
-        cn,
         showModal,
         handleClose,
         step,
         isMinimized,
         shortcuts,
+        feedback: {
+          title: window.feedbackConfig?.title || "Your Feedback is Valuable",
+          desc:
+            window.feedbackConfig?.desc ||
+            "We truly appreciate your feedback! Your thoughts help us improve our products and services. We would be grateful if you could share your insights with us.",
+          minimizeTitle: window.feedbackConfig?.minimizeTitle || "Minimize",
+          submitTitle: window.feedbackConfig?.submitTitle || "Submit Feedback",
+          theme: VARIANT[window.feedbackConfig?.theme || "TEAL"],
+          minimizeIconURL:
+            window.feedbackConfig?.minimizeIconURL ||
+            "https://cdn-icons-png.flaticon.com/512/4658/4658825.png",
+          modal: {
+            title: window.feedbackConfig?.modal?.title || "Feedback Modal",
+            saveTitle: window.feedbackConfig?.modal?.saveTitle,
+            closeTitle: window.feedbackConfig?.modal?.closeTitle,
+          },
+        },
       };
     },
   });

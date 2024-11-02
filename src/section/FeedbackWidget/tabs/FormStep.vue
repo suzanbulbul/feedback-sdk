@@ -28,18 +28,13 @@
 <script lang="ts">
   import { defineComponent } from "vue";
   import { InputField, TextareaField } from "../../../components";
-  import { shortcuts } from "../../../until/style/shortcuts";
+  import { shortcuts } from "../../../untils";
 
   export default defineComponent({
     name: "form-step",
     components: {
       InputField,
       TextareaField,
-    },
-    data() {
-      return {
-        shortcuts,
-      };
     },
     props: {
       form: {
@@ -59,6 +54,7 @@
       };
 
       return {
+        shortcuts,
         handleSubmit,
       };
     },
