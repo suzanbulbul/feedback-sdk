@@ -7,6 +7,10 @@ interface FeedbackConfig {
   minimizeTitle?: string;
   submitTitle?: string;
   minimizeIconURL?: string;
+  api: {
+    endpoind: string;
+    token: string;
+  };
   modal?: {
     title?: string;
     saveTitle?: string;
