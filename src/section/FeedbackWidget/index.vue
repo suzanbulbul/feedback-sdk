@@ -113,6 +113,12 @@
           feedback: "",
         },
         validationSchema: {
+          email(value: string) {
+            if (value && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)) {
+              return "Geçerli bir e-posta adresi girin.";
+            }
+            return true;
+          },
           feedback(value: string) {
             if (!value) return "Geri bildirim alanı zorunludur.";
             return true;
