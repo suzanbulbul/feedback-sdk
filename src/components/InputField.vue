@@ -5,7 +5,7 @@
       <span v-if="label.includes('*')" :class="shortcuts.errorMessage">*</span>
     </label>
     <input
-      v-model="modelValue"
+      :value="modelValue"
       :type="type"
       :id="id"
       :class="computedClass"
