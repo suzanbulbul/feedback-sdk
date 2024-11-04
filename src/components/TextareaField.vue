@@ -5,7 +5,7 @@
       <span v-if="label.includes('*')" :class="shortcuts.errorMessage">*</span>
     </label>
     <textarea
-      v-model="modelValue"
+      :value="modelValue"
       :id="id"
       :rows="rows"
       :class="computedClass"
